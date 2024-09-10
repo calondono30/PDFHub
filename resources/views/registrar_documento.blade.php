@@ -14,7 +14,7 @@
 @section('content')
 <div class="container">
 
-    <!-- <script>
+    <script>
         Swal.fire({
             position: "top-end",
             icon: "success",
@@ -22,7 +22,7 @@
             showConfirmButton: false,
             timer: 1500
         });
-    </script> -->
+    </script>
 
 
 </div>

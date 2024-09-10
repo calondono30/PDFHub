@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -40,7 +42,7 @@ class HomeController extends Controller
     public function crear_documento($archivo)
     {
 
-        $data = DB::table('dxpst.Bit_Maestropdf')
+        $data = DB::table('dxpst.Rep_Maestropdf')
             ->select('nombre_pdf')
             ->where('nombre_pdf', '=', $archivo)
             ->get();
@@ -50,7 +52,7 @@ class HomeController extends Controller
         if (count($data) > 0) {
             return 0;
         } else {
-            DB::table('dxpst.Bit_Maestropdf')->insert([
+            DB::table('dxpst.Rep_Maestropdf')->insert([
                 'nombre_pdf' => $archivo,
                 'ruta_pdf' => "/var/www/html/rep_legal_new/public/storage/images/$archivo.pdf"
             ]);
@@ -62,7 +64,7 @@ class HomeController extends Controller
     {
 
         $data = $request->all();
-        $ipat = $data['archivo'];
+        $archivo = $data['archivo'];
 
         // Obtener el archivo enviado desde el formulario
 
@@ -99,8 +101,7 @@ class HomeController extends Controller
 
             Storage::disk('public')->put($nombre_archivo, $pdf_content);
 
-
-            return view('/home');
+            return redirect('home');
         }
     }
 }
