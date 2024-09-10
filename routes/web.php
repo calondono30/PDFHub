@@ -31,3 +31,6 @@ Route::get('/contrasena', [App\Http\Controllers\HomeController::class, 'contrase
 
 //REDIRECCIONAMIENTO A LA PÁGINA DE PERFILES DE LA PLATAFORMA ACALDERON 03/09/2024
 Route::get('/perfiles', [App\Http\Controllers\HomeController::class, 'perfiles'])->name('perfiles');
+
+//REGISTRO DEL DOCUMENTO EN LA BASE DE DATOS CALONDONO 10/09/2024
+Route::post('/registrar_documento', [App\Http\Controllers\HomeController::class, 'crear_documento'])->name('crear_documento');
