@@ -101,6 +101,8 @@ class HomeController extends Controller
 
             Storage::disk('public')->put($nombre_archivo, $pdf_content);
 
+
+
             return redirect('home');
         }
     }

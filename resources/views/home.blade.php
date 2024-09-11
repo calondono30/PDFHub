@@ -12,15 +12,15 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container bg-white p-4 " style="width:auto;">
     <div class="row justify-content-center">
 
-        <div class="col-md-12" style="padding: 0px 25px 0px 25px;">
+        <div class="col-md-10" style="padding: 0px 25px 0px 25px;">
             <br>
-            <div class="card" style="box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de Documento') }}</div>
+            <div class="card1">
+                <div class="card-header text-white bg-dark mb-3;">{{ __('Registro de Documento') }}</div>
 
-                <div class="card-body">
+                <div class="card-body1">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -39,9 +39,9 @@
 
                         </div><br>
 
-
-                        <button type="submit" class="btn btn-primary" style="margin-left:24rem;">Cargar imágenes</button>
-
+                        <div>
+                            <button type="submit" class="btn btn-primary" style="margin-left:19rem;">Cargar imágenes</button>
+                        </div>
                     </form>
 
 
