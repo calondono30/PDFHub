@@ -10,7 +10,7 @@
 @stop
 
 @section('content')
-<div class="container bg-white p-4 " style="width:auto;">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card1">

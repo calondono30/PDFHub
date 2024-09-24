@@ -12,7 +12,7 @@
 @stop
 
 @section('content')
-<div class="container bg-white p-4 " style="width:auto;">
+<div class="container">
     <div class="row justify-content-center">
 
         <div class="col-md-10" style="padding: 0px 25px 0px 25px;">
@@ -40,7 +40,7 @@
                         </div><br>
 
                         <div>
-                            <button type="submit" class="btn btn-primary" style="margin-left:19rem;">Cargar imágenes</button>
+                            <button type="submit" class="btn btn-primary" style="margin-left:13.5rem;">Cargar imágenes</button>
                         </div>
                     </form>
 

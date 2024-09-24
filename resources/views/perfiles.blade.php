@@ -11,7 +11,7 @@
 
 @section('content')
 
-<div class="container bg-white p-4 " style="width:50rem;">
+<div class="container">
 
   <div class="card">
 

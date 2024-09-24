@@ -15,7 +15,7 @@
 
 <br>
 
-<div class="container bg-white p-4 " style="width:45rem;">
+<div class="container">
   <div class="card">
 
     <h5 class=" card-header">Cambiar Contraseña</h5>
