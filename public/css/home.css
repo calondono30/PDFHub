@@ -72,7 +72,7 @@ box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
   margin: auto;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: large;
-  border-radius: 3px 3px;
+  border-radius: 3px 3px 3px 3px;
   box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
   }
 
@@ -106,5 +106,17 @@ text-align: center;
   background-color: white;
   padding: 4%;
   border-radius: 0px 0px 5px 5px;
+
+}
+
+.container{
+
+  width: 100%;
+  height: auto;
+  padding-right: 7.5px;
+  padding-left: 7.5px;
+  margin-right: auto;
+  margin-left: auto;
+  zoom: 80%;
 
 }

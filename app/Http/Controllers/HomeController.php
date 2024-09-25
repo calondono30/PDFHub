@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\HomeController\PDF;
+
 
 class HomeController extends Controller
 {
@@ -42,23 +44,23 @@ class HomeController extends Controller
     public function crear_documento($archivo)
     {
 
-        $data = DB::table('dxpst.Rep_Maestropdf')
-            ->select('nombre_pdf')
-            ->where('nombre_pdf', '=', $archivo)
+        $data = DB::table('maestropdf')
+            ->select('archivo')
+            ->where('archivo', '=', $archivo)
             ->get();
 
         $result = json_decode($data, true);
 
-        if (count($data) > 0) {
-            return 0;
-        } else {
-            DB::table('dxpst.Rep_Maestropdf')->insert([
-                'nombre_pdf' => $archivo,
-                'ruta_pdf' => "/var/www/html/rep_legal_new/public/storage/images/$archivo.pdf"
-            ]);
-            return 1;
-        }
+        // if (count($data) > 0) {
+        //     return 0;
+        // } else {
+        DB::table('maestropdf')->insert([
+            'archivo' => $archivo,
+            'ruta_pdf' => "/var/www/html/rep_legal_new/public/storage/images/$archivo.pdf"
+        ]);
+        // return 1;
     }
+
 
     public function guardarPDF(Request $request)
     {
@@ -70,40 +72,39 @@ class HomeController extends Controller
 
         $validacion = $this->crear_documento($archivo);
 
-        if ($validacion == 0) {
+        // if ($validacion == 0) {
 
-            session_start();
-            $_SESSION['mensaje'] = 1;
-            return redirect('/home');
-        } else {
+        //     session_start();
+        //     $_SESSION['mensaje'] = 1;
+        //     return redirect('/home');
+        // } else {
 
-            $archivos = $request->file('archivo');
+        $archivo = $request->file('archivo');
 
-            date_default_timezone_set('america/bogota');
+        date_default_timezone_set('america/bogota');
 
-            $imageUrls = [];
+        $imageUrls = [];
 
-            foreach ($archivos as $archivo) {
-                $file = uniqid() . '_' . $archivo->getClientOriginalName();
-                // Guardar el archivo en el servidor
-                $archivo->storeAs('images', $file);
-                $url = Storage::url('app/images/') . $file;
-                array_push($imageUrls, $url);
-            }
+        // foreach ($archivos as $archivo) {
+        $file = uniqid() . '_' . $archivo->getClientOriginalName();
+        // Guardar el archivo en el servidor
+        $archivo->storeAs('images', $file);
+        $url = Storage::url('app/images/') . $file;
+        array_push($imageUrls, $url);
+        // }
 
-            // Generar un nombre único para el archivo  
+        // Generar un nombre único para el archivo  
 
-            $pdf = PDF::loadView('pdf', $data, ['imageUrls' => $imageUrls]);
-            // $pdf_content= $pdf->download()->getOriginalContent(); 
-            $pdf_content = $pdf->output();
+        $pdf = PDF::loadView('pdf', $data, ['imageUrls' => $imageUrls]);
+        // $pdf_content= $pdf->download()->getOriginalContent(); 
+        $pdf_content = $pdf->output();
 
-            $nombre_archivo = $archivo . '.pdf';
+        $nombre_archivo = $archivo . '.pdf';
 
-            Storage::disk('public')->put($nombre_archivo, $pdf_content);
+        Storage::disk('public')->put($nombre_archivo, $pdf_content);
 
 
 
-            return redirect('home');
-        }
+        return redirect('home');
     }
 }
