@@ -28,7 +28,7 @@
                     @endif
 
 
-                    <form action="registrar_documento" method="post">
+                    <!-- <form action="crear_documento" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="seccion-form" id="multi-selector-uniq">
@@ -41,6 +41,18 @@
 
                         <div>
                             <button type="submit" class="btn btn-primary" style="margin-left:13.5rem;">Cargar imágenes</button>
+                        </div>
+                    </form> -->
+
+                    <form action="{{ route('guardarPDF') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="seccion-form">
+                            <label for="archivo" class="col-sm-0 col-form-label">Selecciona un PDF:</label>
+                            <input type="file" id="archivo" name="archivo" accept=".pdf" required>
+                        </div>
+                        <br>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Cargar documento</button>
                         </div>
                     </form>
 

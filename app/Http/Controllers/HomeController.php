@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\HomeController\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 
 class HomeController extends Controller
@@ -51,60 +52,57 @@ class HomeController extends Controller
 
         $result = json_decode($data, true);
 
-        // if (count($data) > 0) {
-        //     return 0;
-        // } else {
-        DB::table('maestropdf')->insert([
-            'archivo' => $archivo,
-            'ruta_pdf' => "/var/www/html/rep_legal_new/public/storage/images/$archivo.pdf"
-        ]);
-        // return 1;
+        if (count($data) > 0) {
+            return 0;
+        } else {
+            DB::table('maestropdf')->insert([
+                'archivo' => $archivo,
+                'ruta_pdf' => "/var/www/html/rep_legal_new/public/storage/images/$archivo.pdf"
+            ]);
+            return redirect('home');
+        }
     }
-
 
     public function guardarPDF(Request $request)
     {
+        // Validar el archivo
+        $request->validate([
+            'archivo' => 'required|file|mimes:pdf,jpeg,png',
+        ]);
 
-        $data = $request->all();
-        $archivo = $data['archivo'];
-
-        // Obtener el archivo enviado desde el formulario
-
-        $validacion = $this->crear_documento($archivo);
-
-        // if ($validacion == 0) {
-
-        //     session_start();
-        //     $_SESSION['mensaje'] = 1;
-        //     return redirect('/home');
-        // } else {
-
+        // Obtener el archivo y generar un nombre único
         $archivo = $request->file('archivo');
+        $nombre_archivo = uniqid() . '_' . $archivo->getClientOriginalName();
 
-        date_default_timezone_set('america/bogota');
+        // Asegurarse de que la carpeta 'images' exista
+        if (!Storage::exists('images')) {
+            Storage::makeDirectory('images');
+        }
 
-        $imageUrls = [];
+        // Guardar el archivo en el almacenamiento local
+        $archivo->storeAs('images', $nombre_archivo, 'local');
 
-        // foreach ($archivos as $archivo) {
-        $file = uniqid() . '_' . $archivo->getClientOriginalName();
-        // Guardar el archivo en el servidor
-        $archivo->storeAs('images', $file);
-        $url = Storage::url('app/images/') . $file;
-        array_push($imageUrls, $url);
-        // }
+        // Crear el contenido HTML para el PDF (en lugar de usar una vista)
+        date_default_timezone_set('America/Bogota');
+        $url = Storage::url('images/' . $nombre_archivo);
+        $htmlContent = "
+        <html>
+            <body>
+                <h1>Archivo cargado</h1>
+                <p>El archivo se ha guardado correctamente en el servidor.</p>
+                <p>URL del archivo: <a href='$url'>$url</a></p>
+            </body>
+        </html>
+    ";
 
-        // Generar un nombre único para el archivo  
+        // Generar el PDF con el contenido HTML
+        $pdf = PDF::loadHTML($htmlContent);
 
-        $pdf = PDF::loadView('pdf', $data, ['imageUrls' => $imageUrls]);
-        // $pdf_content= $pdf->download()->getOriginalContent(); 
+        // Guardar el PDF en el almacenamiento público
         $pdf_content = $pdf->output();
+        Storage::disk('public')->put($nombre_archivo . '.pdf', $pdf_content);
 
-        $nombre_archivo = $archivo . '.pdf';
-
-        Storage::disk('public')->put($nombre_archivo, $pdf_content);
-
-
-
-        return redirect('home');
+        // Redirigir a la página principal
+        return redirect('home')->with('success', 'PDF generado y guardado con éxito.');
     }
 }
