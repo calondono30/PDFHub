@@ -53,7 +53,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: '¡Se cargo el archivo con éxito!',
+            title: '¡Se cargo el archivo!',
             text: "{{ session('success') }}",
             confirmButtonText: 'OK'
         });
