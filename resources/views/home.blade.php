@@ -18,7 +18,7 @@
         <div class="col-md-10" style="padding: 0px 25px 0px 25px;">
             <br>
             <div class="card1">
-                <div class="card-header text-white bg-dark mb-3;">{{ __('Registro de Documento') }}</div>
+                <div class="card-header text-white bg-dark mb-3;" style="font-size: larger;">{{ __('Registro de Documento') }}</div>
 
                 <div class="card-body1">
                     @if (session('status'))
@@ -28,31 +28,15 @@
                     @endif
 
 
-                    <!-- <form action="crear_documento" method="post" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="seccion-form" id="multi-selector-uniq">
-
-                            <label for="imagenes" class="col-sm-0 col-form-label">Imágenes: </label>
-                            <input type="file" multiple='true' id="archivo" onclick="miAlerta()" accept=".pdf" name="archivo[]" value="{{ old('archivo') }}" style="margin: auto;color:red;" required>
-                            <ul id="preview"></ul>
-
-                        </div><br>
-
-                        <div>
-                            <button type="submit" class="btn btn-primary" style="margin-left:13.5rem;">Cargar imágenes</button>
-                        </div>
-                    </form> -->
 
                     <form action="{{ route('guardarPDF') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="seccion-form">
-                            <label for="archivo" class="col-sm-0 col-form-label">Selecciona un PDF:</label>
-                            <input type="file" id="archivo" name="archivo" accept=".pdf" required>
-                        </div>
-                        <br>
+                        <div class="seccion-form"><br>
+                            <label for="archivo" class="col-sm-0 col-form-label" style="font-family: Segoe UI, 'Tahoma', Geneva, Verdana, sans-serif;">Selecciona un PDF: </label>
+                            <input type="file" id="archivo" onclick="miAlerta()" accept=".pdf" name="archivo" style="margin: auto;color:red;" required>
+                        </div><br><br>
                         <div>
-                            <button type="submit" class="btn btn-primary">Cargar documento</button>
+                            <button type="submit" class="btn btn-primary" style="margin-left:13.5rem;">Cargar documento</button>
                         </div>
                     </form>
 
@@ -63,6 +47,20 @@
 
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Se cargo el archivo con éxito!',
+            text: '{{ session('
+            success ') }}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+    @endif
+
 
     <script>
         let filesList = [];
