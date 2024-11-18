@@ -54,8 +54,7 @@
         Swal.fire({
             icon: 'success',
             title: '¡Se cargo el archivo con éxito!',
-            text: '{{ session('
-            success ') }}',
+            text: "{{ session('success') }}",
             confirmButtonText: 'OK'
         });
     </script>
