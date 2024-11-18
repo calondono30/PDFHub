@@ -33,5 +33,5 @@ Route::get('/contrasena', [App\Http\Controllers\HomeController::class, 'contrase
 Route::get('/perfiles', [App\Http\Controllers\HomeController::class, 'perfiles'])->name('perfiles');
 
 //REGISTRO DEL DOCUMENTO EN LA BASE DE DATOS CALONDONO 10/09/2024
-// Route::post('/home/{archivo}', [App\Http\Controllers\HomeController::class, 'crear_documento'])->name('crear_documento');
+
 Route::post('/guardar-documento', [App\Http\Controllers\HomeController::class, 'guardarPDF'])->name('guardarPDF');
