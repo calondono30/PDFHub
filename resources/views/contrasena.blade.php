@@ -1,13 +1,8 @@
 @extends('adminlte::page')
 
-
 @section('title','Dashboard')
 
-
 @section('content_header')
-
-<!-- Styles -->
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
 @stop
 
@@ -15,7 +10,7 @@
 <div class="container">
     <div class="row justify-content-center">
 
-    <div class="col-md-12" style="padding: 0px 25px 0px 25px;">
+    <div class="col-md-8" style="padding: 0px 25px 0px 25px;">
         <br>
             <div class="card"  style="box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);">
                 <div class="card-header text-white bg-dark mb-3">{{ __('Cambio de contraseña') }}</div>
