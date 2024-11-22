@@ -4,9 +4,6 @@
 
 @section('content_header')
 
-<!-- Styles -->
-
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @stop
 
 
@@ -14,9 +11,9 @@
 <div class="container">
     <div class="row justify-content-center">
 
-    <div class="col-md-12" style="padding: 0px 25px 0px 25px;">
+    <div class="col-md-12">
         <br>
-            <div class="card"  style="box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);">
+            <div class="card" class="col-md-12">
                 <div class="card-header text-white bg-dark mb-3">{{ __('Listado de documentos') }}</div>
 
                 <div class="card-body">
@@ -25,13 +22,31 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    
-            <form action="registrar_documento" method="post">
             @csrf
-            
+            <table class="table-tp table-hover">
+                        <tr>
+                            <td><strong>Id</strong></td>
+                            <td><strong>Archivo</strong></td>
+                            <td style='text-align: center;'><strong>Acciones</strong></td>
+                            <td><strong>Fecha Registro</strong></td>
+                        </tr>
 
-            </form>
+                        @foreach($result as $d)
+                        <tr>
+                            <td>{{ $d['id'] }}</td>
+                            <td>{{ $d['archivo'] }}</td>
+                            <td>
+                                {{ method_field('GET') }}
+                                {{  csrf_field() }}
+                                <a href="{{ $d['ruta_pdf'] }}" target="_blank">
+                                    <button type="button" class="btn btn-success btn-primary" title="Visualizar"><span class="fa fa-eye"></span></button>
+                                </a>
+                            </td>
+
+                            <td>{{ $d['updated_at'] }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
                          
             </div>
         </div>
