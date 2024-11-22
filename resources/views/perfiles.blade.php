@@ -10,10 +10,13 @@
 @stop
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
 
-<div class="card" style="width: 22rem;">
-
-<h5 class="card-header p-1">Actualizar Perfil</h5><br>
+    <div class="col-md-12" style="padding: 0px 25px 0px 25px;">
+        <br>
+            <div class="card"  style="box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);">
+                <div class="card-header text-white bg-dark mb-3">{{ __('Actualizar perfil') }}</div>
  
   <div class="card-body">
 
@@ -41,21 +44,15 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
         <button type="reset" class="btn btn-danger">Cancelar</button>
 
-      <small class="text-muted mt-3 mb-1 d-block">Volver al <a href="/home">Inicio</a></small>
       </form>
 
         </div>
 </div>
 
-
-
- 
-
-
-
+</div>
+</div>
+</div>
 @stop
-
-<section></section>
 
 
 
