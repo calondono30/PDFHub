@@ -13,7 +13,7 @@
 
     <div class="col-md-12">
         <br>
-            <div class="card" class="col-md-12">
+            <div class="card">
                 <div class="card-header text-white bg-dark mb-3">{{ __('Listado de documentos') }}</div>
 
                 <div class="card-body">
@@ -23,11 +23,11 @@
                         </div>
                     @endif
             @csrf
-            <table class="table-tp table-hover">
+            <table class="table table-success table-striped">
                         <tr>
                             <td><strong>Id</strong></td>
                             <td><strong>Archivo</strong></td>
-                            <td style='text-align: center;'><strong>Acciones</strong></td>
+                            <td><strong>Acciones</strong></td>
                             <td><strong>Fecha Registro</strong></td>
                         </tr>
 

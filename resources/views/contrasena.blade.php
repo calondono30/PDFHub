@@ -10,9 +10,9 @@
 <div class="container">
     <div class="row justify-content-center">
 
-    <div class="col-md-8" style="padding: 0px 25px 0px 25px;">
+    <div class="col-md-6">
         <br>
-            <div class="card"  style="box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);">
+            <div class="card" style="box-shadow: 12px 12px 12px 10px rgba(20, 20, 20, 0.3);width:70%;">
                 <div class="card-header text-white bg-dark mb-3">{{ __('Cambio de contraseña') }}</div>
  
   <div class="card-body">
@@ -33,7 +33,7 @@
       <input class="form-control input-lg" placeholder="Confirmar contraseña" type="password"  id = "confirmpw" required>
       </div><br>
 
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" style = "margin-left:26%;">Guardar</button>
         <button type="reset" class="btn btn-danger">Cancelar</button>
 
       </form>

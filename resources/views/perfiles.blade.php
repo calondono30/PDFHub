@@ -12,7 +12,7 @@
 
     <div class="col-md-8">
         <br>
-            <div class="card"  style="box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);">
+            <div class="card"  style="box-shadow: 12px 12px 12px 10px rgba(20, 20, 20, 0.3);width:60%;margin-left:15%;">
                 <div class="card-header text-white bg-dark mb-3">{{ __('Actualizar perfil') }}</div>
  
   <div class="card-body">
@@ -38,7 +38,7 @@
       <input class="form-control input-lg" placeholder="Telefono" type="number"  id = "telefono" required>
       </div><br>
 
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" style = "margin-left:26%;">Guardar</button>
         <button type="reset" class="btn btn-danger">Cancelar</button>
 
       </form>
