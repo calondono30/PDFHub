@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'PDFHub',
-    'title_prefix' => 'PDFHub - ',
+    'title_prefix' => 'PDFHub -',
     'title_postfix' => '',
 
     /*
